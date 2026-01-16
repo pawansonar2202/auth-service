@@ -1,4 +1,4 @@
 package com.auth.auth_service.repository;
 
-public class UserRepository {
+public class AuthUserRepository {
 }
