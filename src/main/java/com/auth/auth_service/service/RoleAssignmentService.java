@@ -1,4 +1,4 @@
 package com.auth.auth_service.service;
 
-public class RoleAssignmentService {
+public interface RoleAssignmentService {
 }

@@ -23,6 +23,4 @@ public enum PermissionCode {
     TASK_DELETE,
     TASK_VIEW,
     TASK_STATUS_UPDATE
-
-
 }

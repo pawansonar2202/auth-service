@@ -1,4 +1,5 @@
 package com.auth.auth_service.service;
 
-public class AuthService {
+public interface AuthService {
+    String login(String authorizationHeader);
 }
