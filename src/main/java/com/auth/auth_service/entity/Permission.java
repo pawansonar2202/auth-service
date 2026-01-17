@@ -1,8 +1,7 @@
 package com.auth.auth_service.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.auth.auth_service.enums.PermissionCode;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +11,9 @@ import lombok.Setter;
 @Table(name = "permission")
 public class Permission extends BaseEntity {
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "code", nullable = false, unique = true, length = 100)
-    private String code;
+    private PermissionCode code;
 
     @Column(name = "description", length = 255)
     private String description;

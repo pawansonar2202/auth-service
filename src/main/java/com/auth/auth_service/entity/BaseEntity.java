@@ -21,8 +21,9 @@ public abstract class BaseEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    // userId / adminId / superAdminId
     @Column(name = "created_by")
-    private LocalDateTime createdBy;
+    private Long createdBy;
 
     @Column(name = "updated_by")
     private Long updatedBy;
@@ -31,16 +32,14 @@ public abstract class BaseEntity {
     private Boolean isDeleted = false;
 
     @PrePersist
-    protected void onCreate()
-    {
-        this.createdAt=LocalDateTime.now();
-        this.updatedAt=LocalDateTime.now();
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
         this.isDeleted = false;
     }
 
     @PreUpdate
-    protected void onUpdate()
-    {
-        this.updatedAt=LocalDateTime.now();
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "auth_user")
-public class AuthUser extends BaseEntity{
+public class AuthUser extends BaseEntity {
 
     @Column(nullable = false, unique = true, length = 100)
     private String username;
@@ -17,8 +17,9 @@ public class AuthUser extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "admin_id")
-    private Long adminId;
+    // Owner admin (NULL for Admin & Super Admin)
+    @Column(name = "created_by_admin_id")
+    private Long createdByAdminId;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
