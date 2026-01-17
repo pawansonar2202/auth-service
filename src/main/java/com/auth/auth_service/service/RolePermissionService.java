@@ -1,4 +1,5 @@
 package com.auth.auth_service.service;
 
-public class RolePermissionService {
+public interface RolePermissionService {
+    void assignPermissionToRole(Long roleId, Long permissionId);
 }
