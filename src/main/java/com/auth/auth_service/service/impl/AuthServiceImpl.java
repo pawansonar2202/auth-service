@@ -84,7 +84,7 @@ public class AuthServiceImpl implements AuthService {
             for(RolePermission rolePermission : rolePermissions)
             {
                 Permission permission = permissionRepository.findById(rolePermission.getPermissionId()).orElseThrow(()-> new RuntimeException("Permission Not Found"));
-                permissions.add(permission.getCode().name());
+                permissions.add(permission.getCode());
             }
         }
         return permissions;
