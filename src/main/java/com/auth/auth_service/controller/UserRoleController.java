@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/admin/user-roles")
+@RequestMapping("/auth/user-roles")
 @RequiredArgsConstructor
 public class UserRoleController {
 
