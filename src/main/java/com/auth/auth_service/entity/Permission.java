@@ -1,19 +1,19 @@
 package com.auth.auth_service.entity;
 
-import com.auth.auth_service.enums.PermissionCode;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Table(name = "permission")
 public class Permission extends BaseEntity {
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "code", nullable = false, unique = true, length = 100)
-    private PermissionCode code;
+    @Column(nullable = false, unique = true, updatable = false)
+    private String code;
 
     @Column(name = "description", length = 255)
     private String description;

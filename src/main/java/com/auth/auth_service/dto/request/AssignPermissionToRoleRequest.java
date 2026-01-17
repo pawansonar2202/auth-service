@@ -6,11 +6,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AssignRoleRequest {
-
-    @NotNull(message = "User ID is required")
-    private Long userId;
+public class AssignPermissionToRoleRequest {
 
     @NotNull(message = "Role ID is required")
     private Long roleId;
+
+    @NotNull(message = "Permission ID is required")
+    private Long permissionId;
 }
