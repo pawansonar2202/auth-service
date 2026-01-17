@@ -4,10 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
 @Getter
-public class CreateRoleRequest {
+public class UpdateRoleRequest {
 
     @NotBlank
-    private String name;
-
     private String description;
 }

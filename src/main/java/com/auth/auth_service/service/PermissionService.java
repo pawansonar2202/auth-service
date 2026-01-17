@@ -10,4 +10,6 @@ public interface PermissionService {
 
     List<Permission> getAllPermissions();
 
+    boolean hasPermission(Long userId, String permissionCode);
+
 }

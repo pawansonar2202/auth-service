@@ -1,7 +1,10 @@
 package com.auth.auth_service.repository;
 
+import com.auth.auth_service.entity.Role;
 import com.auth.auth_service.entity.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +26,9 @@ public interface UserRoleRepository extends JpaRepository<UserRole,Long> {
             Long userId,
             Long roleId
     );
+
+    boolean existsByRoleIdAndIsDeletedFalse(Long roleId);
+
+    @Query("SELECT ur.roleId FROM UserRole ur WHERE ur.userId = :userId")
+    List<Long> findRoleIdsByUserId(@Param("userId") Long userId);
 }

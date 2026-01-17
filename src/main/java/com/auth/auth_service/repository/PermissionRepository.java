@@ -12,6 +12,8 @@ public interface PermissionRepository extends JpaRepository<Permission,Long> {
 
     boolean existsByCodeAndIsDeletedFalse(String code);
 
+    Optional<Permission> findByCode(String code);
+
     Optional<Permission> findByCodeAndIsDeletedFalse(String code);
 
     List<Permission> findAllByIsDeletedFalse();

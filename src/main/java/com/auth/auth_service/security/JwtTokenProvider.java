@@ -87,5 +87,4 @@ public class JwtTokenProvider {
                 .map(Object::toString)
                 .collect(Collectors.toSet());
     }
-
 }

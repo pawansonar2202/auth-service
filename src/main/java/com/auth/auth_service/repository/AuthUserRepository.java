@@ -17,4 +17,6 @@ public interface AuthUserRepository extends JpaRepository<AuthUser,Long> {
     List<AuthUser> findByCreatedByAdminIdAndIsDeletedFalse(Long adminId);
 
     boolean existsByIdAndCreatedByAdminIdAndIsDeletedFalse(Long userId, Long adminId);
+
+    boolean existsByUsernameAndIsDeletedFalse(String username);
 }
