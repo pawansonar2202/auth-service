@@ -28,11 +28,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        System.out.println("---- JWT FILTER START ----");
-        System.out.println("Request URI: " + request.getRequestURI());
-
         String authHeader = request.getHeader("Authorization");
-        System.out.println("Authorization Header: " + authHeader);
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             System.out.println("No Bearer token found, skipping JWT processing");
@@ -41,23 +37,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         String token = authHeader.substring(7);
-        System.out.println("Token extracted");
-
         if (!jwtTokenProvider.validateToken(token)) {
             System.out.println("Token validation FAILED");
             filterChain.doFilter(request, response);
             return;
         }
 
-        System.out.println("Token validation SUCCESS");
-
         Long userId = jwtTokenProvider.getUserId(token);
         String userType = jwtTokenProvider.getUserType(token);
         Set<String> permissions = jwtTokenProvider.getPermissions(token);
-
-        System.out.println("UserId from JWT: " + userId);
-        System.out.println("UserType from JWT: " + userType);
-        System.out.println("Permissions from JWT: " + permissions);
 
         List<SimpleGrantedAuthority> authorities =
                 permissions.stream()
@@ -76,9 +64,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         authentication.setDetails(userType);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        System.out.println("Authentication set in SecurityContext");
-        System.out.println("---- JWT FILTER END ----");
 
         filterChain.doFilter(request, response);
     }
