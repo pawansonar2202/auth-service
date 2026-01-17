@@ -1,4 +1,4 @@
 package com.auth.auth_service.security;
 
-public class JwtUtil {
+public class CustomUserDetailsService {
 }
