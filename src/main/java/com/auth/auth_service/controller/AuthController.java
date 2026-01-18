@@ -12,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.interfaces.RSAPublicKey;
+import java.util.Base64;
 import java.util.Map;
 
 @RestController
@@ -20,6 +22,7 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
+    private final RSAPublicKey rsaPublicKey;
 
     // ===================== LOGIN =====================
     @PostMapping("/login")
@@ -74,6 +77,11 @@ public class AuthController {
         }
 
         return Long.valueOf(authentication.getPrincipal().toString());
+    }
+
+    @GetMapping("/public-key")
+    public String getPublicKey() {
+        return Base64.getEncoder().encodeToString(rsaPublicKey.getEncoded());
     }
 
 }
