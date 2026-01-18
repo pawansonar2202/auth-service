@@ -9,22 +9,22 @@ import java.util.Set;
 @Component
 public class JwtContext {
 
-    @SuppressWarnings("unchecked")
-    private Authentication getAuthentication() {
+    private Authentication auth() {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
     public Long getUserId() {
-        return (Long) getAuthentication().getPrincipal();
+        if (auth().getPrincipal() instanceof JwtAuthenticationFilter.JwtPrincipal p) {
+            return p.userId();
+        }
+        return null;
     }
 
     public String getUserType() {
-        return (String) getAuthentication().getDetails();
-    }
-
-    @SuppressWarnings("unchecked")
-    public Set<String> getPermissions() {
-        return (Set<String>) getAuthentication().getCredentials();
+        if (auth().getPrincipal() instanceof JwtAuthenticationFilter.JwtPrincipal p) {
+            return p.userType();
+        }
+        return null;
     }
 
     public boolean isSuperAdmin() {
@@ -32,6 +32,8 @@ public class JwtContext {
     }
 
     public boolean hasPermission(String permission) {
-        return getPermissions().contains(permission);
+        return auth().getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals(permission));
     }
 }
+

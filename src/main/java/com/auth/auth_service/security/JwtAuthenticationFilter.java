@@ -53,10 +53,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         .toList();
 
         System.out.println("Authorities created: " + authorities);
+        JwtPrincipal principal = new JwtPrincipal(userId, userType);
 
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(
-                        userId,
+                        principal,
                         permissions,
                         authorities
                 );
@@ -67,4 +68,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
+    public record JwtPrincipal(
+            Long userId,
+            String userType
+    ) {}
 }
+
+

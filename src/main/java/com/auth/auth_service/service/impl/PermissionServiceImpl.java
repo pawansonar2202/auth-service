@@ -26,6 +26,7 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public Permission createPermission(String code, String description) {
 
+        System.out.println("Super admin ->" + jwtContext.isSuperAdmin());
         if (!jwtContext.isSuperAdmin()) {
             throw new RuntimeException("Only SUPER_ADMIN can create permissions");
         }
